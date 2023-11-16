@@ -30,7 +30,7 @@ app.get('/employees', async (req, res) => {
 // Listener
 const start = () => {
     app.listen(process.env.PORT, () => {
-        console.log(`Server is now running on port ${port}`);
+        console.log(`Server is now running on port ${process.env.PORT}`);
     });
 };
 
