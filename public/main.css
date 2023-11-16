@@ -40,6 +40,10 @@ body {
     width: 100%;
 }
 
+#getallemps{
+    width: 200px;
+}
+
 #list{
     border: 1px solid rgb(78, 2, 2);
     background-color: rgb(107, 3, 3);
