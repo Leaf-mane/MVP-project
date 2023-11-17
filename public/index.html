@@ -4,20 +4,37 @@
         <link rel="stylesheet" type="text/css" href="./main.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="main.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
         <title> You're here forever. </title>
     </head>
     <body>
         <div id="bodycontainer">
             <div id="header">
-                <p>FLESHCORP: A Subsidiary of L.I.C.H. SYSTEMS</p>
+                <pre>
+                    $$$$$$$$\ $$\       $$$$$$$$\  $$$$$$\  $$\   $$\  $$$$$$\   $$$$$$\  $$$$$$$\  $$$$$$$\  
+                    $$  _____|$$ |      $$  _____|$$  __$$\ $$ |  $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\ 
+                    $$ |      $$ |      $$ |      $$ /  \__|$$ |  $$ |$$ /  \__|$$ /  $$ |$$ |  $$ |$$ |  $$ |
+                    $$$$$\    $$ |      $$$$$\    \$$$$$$\  $$$$$$$$ |$$ |      $$ |  $$ |$$$$$$$  |$$$$$$$  |
+                    $$  __|   $$ |      $$  __|    \____$$\ $$  __$$ |$$ |      $$ |  $$ |$$  __$$< $$  ____/ 
+                    $$ |      $$ |      $$ |      $$\   $$ |$$ |  $$ |$$ |  $$\ $$ |  $$ |$$ |  $$ |$$ |      
+                    $$ |      $$$$$$$$\ $$$$$$$$\ \$$$$$$  |$$ |  $$ |\$$$$$$  | $$$$$$  |$$ |  $$ |$$ |      
+                    \__|      \________|\________| \______/ \__|  \__| \______/  \______/ \__|  \__|\__|</pre>  
+                    <pre>                    H i e r a r c h i c a l            S e r a p h i c            S y n t h e s i z e r</pre>             
             </div>
+            <div id="line">_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</div>
+            <br>
             <div id="bodycontainer2">
                 <div id="menu">
-                    <button type="button" id="getallemps" class="menubutton">List All <br> Employees</button>
-                    <button type="button" id="getalldepts" class="menubutton">List All <br> Departments</button>
+                    <p id="welcome">Welcome to the H.S.S. What would you like to do today?</p>
+                    <br><br>
+                    <button type="button" id="getallemps" class="menubutton">>> List All Employees</button>
+                    <br><br><br><br>
+                    <button type="button" id="getalldepts" class="menubutton">>> List All Departments</button>
                 </div>
                 <div id="listcontainer">
-                    
+                    <pre></pre>
                     <div id="list">
 
                     </div>
@@ -48,6 +65,13 @@
                             <input type="text" id="editSkillThree" name="skillThree" placeholder="e.g. Singing" required><br><br>
                             <input type="submit" value="Edit Employee">
                         </form>
+                        <form id="editDepForm" class="hidden">
+                            <label for="editDepName">Edit Department Name</label>
+                            <input type="text" id="editDepName" name="depName" placeholder="e.g. Research Department" required><br><br>
+                            <label for="editDepResp">Edit Dept. Responsibilities</label>
+                            <input type="text" id="editDepResp" name="depResp" placeholder="e.g. Bringing a smile to the face of the customer!" required><br><br>
+                        </form>
+                        <button id="stopEdit" class="hidden">Stop Editing</button>
                     </div>
                 </div>
             </div>

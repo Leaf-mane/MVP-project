@@ -6,43 +6,95 @@
 html {
     height: 100%;
     width: 100%;
+    font-family: 'VT323', monospace;
+    color: lime;
+    
 }
 
 body {
-    background-color: rgb(44, 58, 85);
+    background-color: rgb(0, 0, 0);
+    min-width: 1075px;
+    overflow-x:hidden;
+    font-weight: bold;
 }
+body, button {
+    animation: textShadow 2.5s infinite;
+    animation-duration: 2.5s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: textShadow;
+    animation-timeline: auto;
+    animation-range-start: normal;
+    animation-range-end: normal;
+}
+/* Button and placeholder font rules */
+button{
+    font-family: 'VT323', monospace;
+    background-color: rgb(0, 0, 0);
+    color: lime;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+}
+::placeholder{font-family: 'VT323', monospace;}
+
+pre{
+    white-space: word-wrap;
+    font-family: 'VT323', monospace;
+}
+
 .menubutton{
     width: 100%;
 }
+
 .hidden{
     display: none;
 }
-#header{
-    border: 1px solid red;
-    width: 100%;
-    height: 100px;
-}
 
-#bodycontainer2{
-    border: 1px solid yellow;
+#header{
     width: 100%;
+    height: 180px;
+    color: lime;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: left;
+    align-items: left;
+    top: 0;
+    z-index: 1000;
+    font-family: 'VT323', monospace;
+}
+#line{
+    width:100%;
+    height:15px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+#bodycontainer2{
+    
+    width: 85%;
     height: 1000px;
     display: flex;
     flex-direction: row;
 }
 
 #menu{
-    border: 1px solid pink;
-    width: 15%;
-    background-color: pink;
+    padding-left: 35px;
+    width: 250px;
+    background-color: black;
 }
-
+#welcome{
+    font-size: 1.2em;
+}
 #listcontainer{
-    border: 1px solid green;
-    background-color: green;
+    background-color: black;
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-left: 25px;
 }
 
 #getallemps{
@@ -50,12 +102,133 @@ body {
 }
 
 #list{
-    border: 1px solid rgb(78, 2, 2);
-    background-color: rgb(107, 3, 3);
+    background-color: rgb(0, 0, 0);
     height: 75%;
+    color: lime;
+    
 }
 
 #listui{ 
-    border: 1px solid purple;
-    background-color: purple;
+    background-color: black;
+}
+
+#getallemps {
+    background-color: black;
+    color: lime;
+    font-size: 1.3em;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+    width: 100%;
+}
+
+#getalldepts {
+    background-color: black;
+    color: lime;
+    font-size: 1.3em;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+    width: 100%;
+}
+
+#getallemps:hover{
+    color: rgb(255, 255, 255);
+}
+#getalldepts:hover{
+    color: rgb(255, 255, 255);
+}
+button:hover{
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+#listEmpID{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#listEmpName{
+    font-weight: bold;
+}
+#empName{
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+#listSkills{
+    font-weight: bold;
+}
+
+.expungeButton{
+    font-size: 1.2rem;
+}
+.editButton{
+    font-size: 1.2rem;
+}
+
+
+
+/* BELOW IS A CURSED PLACE, TURN BACK WHILE YOU CAN! */
+/* KEYFRAMES */
+@keyframes textShadow{
+    0% {
+        text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    5% {
+        text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    10% {
+        text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    15% {
+        text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    20% {
+        text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    25% {
+        text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    30% {
+        text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    35% {
+        text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    40% {
+        text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    45% {
+        text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    50% {
+        text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    55% {
+        text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    60% {
+        text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    65% {
+        text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    70% {
+        text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    75% {
+        text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    80% {
+        text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    85% {
+        text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    90% {
+        text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    95% {
+        text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    100% {
+        text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
 }

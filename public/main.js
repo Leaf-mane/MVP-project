@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     const employeesFetch = () => {
         $.ajax({
             url: '/employees',
@@ -27,11 +28,13 @@ $(document).ready(function() {
     const displayEmployees = (employees) => {
         let employeeHTML = '<ul>'; 
         employees.forEach(function(employee) {
-        employeeHTML += `<p>EMPLOYEE ID:${employee.emp_id} Dept ID: ${employee.dep_id}<br> 
-                        NAME:${employee.emp_name}.<br>
-                        <pre> SKILLS: ${employee.skill_one}, ${employee.skill_two}, ${employee.skill_three}</pre></p><br>
-                        <button type="button" id="expungeEmployeeNumber${employee.emp_id}" class="expungeButton">Expunge Employee<br>Number ${employee.emp_id}</button>
-                        <button type="button" id="editEmployee${employee.emp_id}" class="editButton">Edit</button><br>`; 
+        employeeHTML += `<p id="listEmpID">EMPLOYEE ID: ${employee.emp_id} Dept ID: ${employee.dep_id}<br> 
+                        <p id="listEmpName">NAME: <span id="empName"> ${employee.emp_name}</span>.</p>
+                        <p><span id="listSkills">SKILLS:</span> ${employee.skill_one} | ${employee.skill_two} | ${employee.skill_three}</pre></p>
+                        <br>
+                        <button type="button" id="editEmployee${employee.emp_id}" class="editButton">>> Edit</button><br>
+                        <button type="button" id="expungeEmployeeNumber${employee.emp_id}" class="expungeButton">>> Expunge Employee ${employee.emp_id}</button>
+                        <br><br><br>`; 
         });
         employeeHTML += '</ul>';
         $('#list').html(employeeHTML);
@@ -46,7 +49,7 @@ $(document).ready(function() {
             console.log(`Editing employee: ${employeeId}`);
             $(`#employeeForm`).addClass('hidden')
             $(`#editForm`).removeClass('hidden')
-            
+            $(`#stopEdit`).removeClass('hidden')
             $.ajax({
                 url: `/employees/${employeeId}`,
                 type: 'GET',
@@ -95,8 +98,8 @@ $(document).ready(function() {
     const displayDepartments = (departments) => {
         let departmentHTML = '<ul>';
         departments.forEach(function(departments) {
-            departmentHTML += `<p><h3>${departments.dep_name}</h3>.
-                               <pre>Department Responsibilities: ${departments.resp}</pre></p><br>`;
+            departmentHTML += `<p><h2>${departments.dep_name}</h2>--------------------
+                               <p>Department Responsibilities: ${departments.resp}</p><br>`;
         });
         departmentHTML += '</ul>';
         $('#list').html(departmentHTML);
@@ -141,17 +144,24 @@ $(document).ready(function() {
 
     $('#getallemps').click(function() {
         employeesFetch(); 
-        if($('#employeeForm').hasClass('hidden')){
-            $('#employeeForm').removeClass('hidden')
-        } else {
-            $('#employeeForm').addClass('hidden')
-        }
+        $('#employeeForm').removeClass('hidden')
+        $('#editDepForm').addClass('hidden')
+        
     });
 
     $('#getalldepts').click(function() {
         departmentsFetch();
+        $('#employeeForm').addClass('hidden')
+        
     })
 
+    $('#stopEdit').click(function() {
+        $(`#employeeForm`).removeClass('hidden')
+        $(`#editForm`).addClass('hidden')
+        $(`#stopEdit`).addClass('hidden')
+        console.log('Stop Editing button clicked!');
+        
+    });
     
 
   });
