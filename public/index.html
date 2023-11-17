@@ -13,18 +13,30 @@
             </div>
             <div id="bodycontainer2">
                 <div id="menu">
-
+                    <button type="button" id="getallemps" class="menubutton">List All <br> Employees</button>
+                    <button type="button" id="getalldepts" class="menubutton">List All <br> Departments</button>
                 </div>
                 <div id="listcontainer">
-                    <button type="button" id="getallemps">All Employees</button>
+                    
                     <div id="list">
 
                     </div>
                     <div id="listui">
-
+                        <form id="employeeForm" class="hidden">
+                            <label for="empName">Employee Name:</label>
+                            <input type="text" id="empName" name="empName" placeholder="e.g. John Smith" required><br><br>
+                            <label for="depId">Department ID:</label>
+                            <input type="number" id="depId" name="depId" placeholder="e.g. 1" required><br><br>
+                            <label for="skillOne">Skill One:</label>
+                            <input type="text" id="skillOne" name="skillOne" placeholder="e.g. Typing" required><br><br>
+                            <label for="skillTwo">Skill Two:</label>
+                            <input type="text" id="skillTwo" name="skillTwo" placeholder="e.g. Bloodletting" required><br><br>
+                            <label for="skillThree">Skill Three:</label>
+                            <input type="text" id="skillThree" name="skillThree" placeholder="e.g. Singing" required><br><br>
+                            <input type="submit" value="Create Employee">
+                        </form>
                     </div>
                 </div>
-                
             </div>
         </div>
     </body>

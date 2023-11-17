@@ -11,23 +11,73 @@ const pool = new Pool({
 
 app.use(express.json());
 app.use(express.static("public"));
+console.log(process.env.DATABASE_URL)
+
+app.post('/employees', async (req, res) => {
+    const { emp_name, dep_id, skill_one, skill_two, skill_three } = req.body;
+    try {
+      const client = await pool.connect();
+      const query = 'INSERT INTO employees (emp_name, dep_id, skill_one, skill_two, skill_three) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+      const values = [emp_name, dep_id, skill_one, skill_two, skill_three];
+      const result = await client.query(query, values);
+      client.release();
+      res.status(201).json(result.rows[0]);
+    } catch (error) {
+      res.status(500).json({ error: 'Unable to create employee' });
+    }
+  });
+
 
 app.get('/employees', async (req, res) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM employees');
+      const result =  await client.query('SELECT * FROM employees');
       const employees = result.rows;
       client.release();
-      res.status(200).json(employees);
+      res.status(200).json(result.rows);
     } catch (error) {
       res.status(500).json({ error: 'Unable to fetch employees' });
     }
   });
 
+  app.get('/departments', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM departments');
+      const departments = result.rows;
+      client.release();
+      res.status(200).json(departments);
+    } catch (error) {
+      res.status(500).json({ error: 'Unable to fetch departments' });
+    }
+  });
 
+  app.delete('/employees/:id', async (req, res) => {
+    const { id } = req.params; 
+    try {
+      const client = await pool.connect();
+      await client.query('DELETE FROM employees WHERE emp_id = $1', [id]);
+      client.release();
+      res.status(200).json({ message: `Employee with ID ${id} deleted successfully` });
+    } catch (error) {
+      res.status(500).json({ error: 'Unable to delete employee' });
+    }
+  });
 
-
-
+app.put('/employees/:id', async (req, res) => {
+    const { id } = req.params;
+    const { emp_name, dep_id, skill_one, skill_two, skill_three } = req.body;
+    try {
+        const client = await pool.connect();
+        const query = 'UPDATE employees SET emp_name = $1, dep_id = $2, skill_one = $3, skill_two = $4, skill_three = $5 WHERE emp_id = $6 RETURNING *';
+        const values = [emp_name, dep_id, skill_one, skill_two, skill_three, id];
+        const result = await client.query(query, values);
+        client.release();
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        res.status(500).json({ error: 'Unable to update employee' });
+    }
+});
 
 
 
