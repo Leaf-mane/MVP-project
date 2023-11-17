@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     const employeesFetch = () => {
         $.ajax({
             url: '/employees',
@@ -32,7 +31,7 @@ $(document).ready(function() {
                         NAME:${employee.emp_name}.<br>
                         <pre> SKILLS: ${employee.skill_one}, ${employee.skill_two}, ${employee.skill_three}</pre></p><br>
                         <button type="button" id="expungeEmployeeNumber${employee.emp_id}" class="expungeButton">Expunge Employee<br>Number ${employee.emp_id}</button>
-                        <br>`; 
+                        <button type="button" id="editEmployee${employee.emp_id}" class="editButton">Edit</button><br>`; 
         });
         employeeHTML += '</ul>';
         $('#list').html(employeeHTML);
@@ -41,6 +40,56 @@ $(document).ready(function() {
             console.log(employeeId)
             deleteEmployee(employeeId);
         })
+        $(`.editButton`).click(function() {
+            console.log("Working")
+            const employeeId = this.id.replace('editEmployee', '');
+            console.log(`Editing employee: ${employeeId}`);
+            $(`#employeeForm`).addClass('hidden')
+            $(`#editForm`).removeClass('hidden')
+            
+            $.ajax({
+                url: `/employees/${employeeId}`,
+                type: 'GET',
+                success: function(employeeData) {
+                    console.log(employeeData)
+                    $('#editEmpName').val(employeeData.emp_name);
+                    $('#editDepId').val(employeeData.dep_id);
+                    $('#editSkillOne').val(employeeData.skill_one);
+                    $('#editSkillTwo').val(employeeData.skill_two);
+                    $('#editSkillThree').val(employeeData.skill_three);
+                    $('#editForm').submit(function(event) {
+                        event.preventDefault();
+                        const updatedData = {
+                            emp_name: $('#editEmpName').val(),
+                            dep_id: $('#editDepId').val(),
+                            skill_one: $('#editSkillOne').val(),
+                            skill_two: $('#editSkillTwo').val(),
+                            skill_three: $('#editSkillThree').val()
+                        };
+        
+                        $.ajax({
+                            url: `/employees/${employeeId}`,
+                            type: 'PUT',
+                            contentType: 'application/json',
+                            data: JSON.stringify(updatedData),
+                            success: function(updatedEmployee) {
+                                console.log('Employee updated:', updatedEmployee);
+                                employeesFetch(); 
+                            },
+                            error: function(error) {
+                                console.error('Error updating employee:', error);
+                                console.log(updatedData)
+                            }
+                        });
+                    });    
+                },
+                
+                error: function(error) {
+                    console.error('Error fetching employee details:', error);
+                }
+
+            });
+        });
     };
 
     const displayDepartments = (departments) => {
@@ -103,5 +152,6 @@ $(document).ready(function() {
         departmentsFetch();
     })
 
+    
 
   });

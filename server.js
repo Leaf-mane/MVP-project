@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.static("public"));
 console.log(process.env.DATABASE_URL)
 
+// create
 app.post('/employees', async (req, res) => {
     const { emp_name, dep_id, skill_one, skill_two, skill_three } = req.body;
     try {
@@ -27,7 +28,7 @@ app.post('/employees', async (req, res) => {
     }
   });
 
-
+// get all employees
 app.get('/employees', async (req, res) => {
     try {
       const client = await pool.connect();
@@ -39,7 +40,7 @@ app.get('/employees', async (req, res) => {
       res.status(500).json({ error: 'Unable to fetch employees' });
     }
   });
-
+// get all departments
   app.get('/departments', async (req, res) => {
     try {
       const client = await pool.connect();
@@ -51,7 +52,7 @@ app.get('/employees', async (req, res) => {
       res.status(500).json({ error: 'Unable to fetch departments' });
     }
   });
-
+// delete 1
   app.delete('/employees/:id', async (req, res) => {
     const { id } = req.params; 
     try {
@@ -63,7 +64,7 @@ app.get('/employees', async (req, res) => {
       res.status(500).json({ error: 'Unable to delete employee' });
     }
   });
-
+// update 
 app.put('/employees/:id', async (req, res) => {
     const { id } = req.params;
     const { emp_name, dep_id, skill_one, skill_two, skill_three } = req.body;
@@ -77,6 +78,23 @@ app.put('/employees/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Unable to update employee' });
     }
+});
+
+app.get('/employees/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM employees WHERE emp_id = $1', [id]);
+      client.release();
+
+      if (result.rows.length > 0) {
+          res.status(200).json(result.rows[0]); 
+      } else {
+          res.status(404).json({ error: 'Employee not found' }); 
+      }
+  } catch (error) {
+      res.status(500).json({ error: 'Unable to fetch employee' });
+  }
 });
 
 
