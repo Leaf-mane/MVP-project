@@ -11,7 +11,7 @@ const pool = new Pool({
 
 app.use(express.json());
 app.use(express.static("public"));
-console.log(process.env.DATABASE_URL)
+
 
 // create
 app.post('/employees', async (req, res) => {

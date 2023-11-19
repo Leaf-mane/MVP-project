@@ -98,8 +98,10 @@ $(document).ready(function() {
     const displayDepartments = (departments) => {
         let departmentHTML = '<ul>';
         departments.forEach(function(departments) {
-            departmentHTML += `<p><h2>${departments.dep_name}</h2>--------------------
-                               <p>Department Responsibilities: ${departments.resp}</p><br>`;
+            departmentHTML += `<p><h2>${departments.dep_name}</h2><br>
+                               <h3>Department ID: ${departments.dep_id}</h3><br>
+                               --------------------
+                               <p id="depresp">Department Responsibilities: ${departments.resp}</p><br><br><br>`;
         });
         departmentHTML += '</ul>';
         $('#list').html(departmentHTML);
@@ -162,6 +164,11 @@ $(document).ready(function() {
         console.log('Stop Editing button clicked!');
         
     });
-    
+    $('#clickhere').click(function(){
+        $(`#welcome`).removeClass('hidden')
+        $('#welcomebox').addClass('hidden')
+        $(`#welcome2`).addClass('hidden')
+        $('.menubutton').removeClass('hidden')
+    })
 
   });
