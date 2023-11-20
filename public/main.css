@@ -126,7 +126,7 @@ pre{
     background-color: rgb(0, 0, 0);
     height: 75%;
     color: lime;
-    
+    overflow-y: scroll;
 }
 
 #listui{ 
