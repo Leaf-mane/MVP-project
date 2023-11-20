@@ -121,7 +121,10 @@ pre{
 #getallemps{
     width: 100%;
 }
-
+.nowrap{
+    text-wrap:nowrap;
+    overflow-x: hide;
+}
 #list{
     background-color: rgb(0, 0, 0);
     height: 75%;
